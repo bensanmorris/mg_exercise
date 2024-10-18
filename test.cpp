@@ -28,7 +28,7 @@ TEST(GraphTest, CreateEdgeTest)
     // todo
 }
 
-TEST(GraphTest, AddLabelTest)
+TEST(GraphTest, LabelTests)
 {
     Graph g;
     auto v = g.CreateVertex();
@@ -38,4 +38,7 @@ TEST(GraphTest, AddLabelTest)
     EXPECT_EQ(g.labels.data.size(),1);
     EXPECT_EQ(l.vertex,v.id);
     EXPECT_EQ(l.data,"Hi");
+
+    g.RemoveLabel(l);
+    ASSERT_EQ(g.labels.data.size(),0);
 }

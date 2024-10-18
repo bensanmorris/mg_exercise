@@ -67,7 +67,7 @@ namespace mg
             return l;
         }
 
-        void RemoveLabel(Vertex v, Label l)
+        void RemoveLabel(Label l)
         {
             auto found = labels.data.find(l.vertex);
             if(found != labels.data.end())
