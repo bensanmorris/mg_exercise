@@ -23,4 +23,19 @@ TEST(GraphTest, CreateEdgeTest)
     EXPECT_EQ(g.edges.data.size(),1);
     EXPECT_EQ(e.from, vA.id);
     EXPECT_EQ(e.to,vB.id);
+
+    // invalid vertex tests
+    // todo
+}
+
+TEST(GraphTest, AddLabelTest)
+{
+    Graph g;
+    auto v = g.CreateVertex();
+    EXPECT_EQ(g.vertices.data.size(),1);
+    EXPECT_EQ(v.id,0);
+    auto l = g.AddLabel(v,"Hi");
+    EXPECT_EQ(g.labels.data.size(),1);
+    EXPECT_EQ(l.vertex,v.id);
+    EXPECT_EQ(l.data,"Hi");
 }
