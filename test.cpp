@@ -57,7 +57,7 @@ TEST(GraphTest, ShortestPath)
     //   C -> "x"
     //   D -> "x"
     // Test:
-    //   ShortestPath(a,b,"x")
+    //   ShortestPath(A,D,"x")
     // Result:
     //   A(0) -> C(2) -> D(3)
 
