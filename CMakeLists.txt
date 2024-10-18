@@ -38,6 +38,5 @@ FetchContent_Declare(googlebenchmark
 )
 FetchContent_MakeAvailable(googlebenchmark)
 
-include_directories(${PICOBENCH_SRC_ROOT} SYSTEM .)
 add_executable(${PROJECT_NAME}_benchmark benchmark.cpp)
 target_link_libraries(${PROJECT_NAME}_benchmark benchmark::benchmark)
