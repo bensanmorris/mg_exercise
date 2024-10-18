@@ -42,3 +42,53 @@ TEST(GraphTest, LabelTests)
     g.RemoveLabel(l);
     ASSERT_EQ(g.labels.data.size(),0);
 }
+
+TEST(GraphTest, ShortestPath)
+{
+    // Graph:
+    //   A -> B
+    //   A -> C
+    //   B -> C
+    //   C -> D
+    //   B -> D
+    // Labels:
+    //   A -> "x"
+    //   B -> "y"
+    //   C -> "x"
+    //   D -> "x"
+    // Test:
+    //   ShortestPath(a,b,"x")
+    // Result:
+    //   A(0) -> C(2) -> D(3)
+
+    Graph g;
+
+    auto A = g.CreateVertex(); // 0
+    auto B = g.CreateVertex(); // 1
+    auto C = g.CreateVertex(); // 2
+    auto D = g.CreateVertex(); // 3
+
+    g.CreateEdge(A,B);
+    g.CreateEdge(A,C);
+    g.CreateEdge(B,C);
+    g.CreateEdge(C,D);
+    g.CreateEdge(B,D);
+
+    g.AddLabel(A, "x");
+    g.AddLabel(B, "y");
+    g.AddLabel(C, "x");
+    g.AddLabel(D, "x");
+
+    auto adj = g.GetAdjacencies(A);
+    EXPECT_EQ(adj.data.size(), 2);
+    EXPECT_EQ(adj.data[0].id, B.id);
+    EXPECT_EQ(adj.data[1].id, C.id);
+
+    // Result:
+    //   A(0) -> C(2) -> D(3)
+    auto path = g.ShortestPath(A, D, "x");
+    EXPECT_EQ(path.data.size(), 3);
+    EXPECT_EQ(path.data[0], 0);
+    EXPECT_EQ(path.data[1], 2);
+    EXPECT_EQ(path.data[2], 3);
+}

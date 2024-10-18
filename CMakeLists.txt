@@ -8,6 +8,7 @@ set(CMAKE_CXX_STANDARD_REQUIRED ON)
 
 include(FetchContent)
 
+# test
 FetchContent_Declare(
     googletest
     GIT_REPOSITORY https://github.com/google/googletest.git
@@ -27,3 +28,16 @@ target_link_libraries(
 )
 include(GoogleTest)
 gtest_discover_tests(${PROJECT_NAME}_test)
+
+# benchmark
+set(BENCHMARK_ENABLE_TESTING FALSE)
+include(FetchContent)
+FetchContent_Declare(googlebenchmark
+    GIT_REPOSITORY https://github.com/google/benchmark
+    GIT_TAG        main
+)
+FetchContent_MakeAvailable(googlebenchmark)
+
+include_directories(${PICOBENCH_SRC_ROOT} SYSTEM .)
+add_executable(${PROJECT_NAME}_benchmark benchmark.cpp)
+target_link_libraries(${PROJECT_NAME}_benchmark benchmark::benchmark)
