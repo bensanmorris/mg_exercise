@@ -40,7 +40,7 @@ TEST(GraphTest, LabelTests)
     EXPECT_EQ(l.data,"Hi");
 
     g.RemoveLabel(l);
-    ASSERT_EQ(g.labels.data.size(),0);
+    EXPECT_EQ(g.labels.data.size(),0);
 }
 
 TEST(GraphTest, ShortestPath)
